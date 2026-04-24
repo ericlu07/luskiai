@@ -1,25 +1,13 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
-const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#@$%&ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
-const WORD = 'LUSKI'
-const LETTER_RESOLVE_TIMES = [800, 1100, 1400, 1700, 2000]
-const MAX_RESOLVE_TIME = Math.max(...LETTER_RESOLVE_TIMES)
-
-function randomChar() {
-  return SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)]
-}
+const LETTERS = ['L', 'U', 'S', 'K', 'I']
 
 export function Preloader({ onComplete }: { onComplete: () => void }) {
   const [visible, setVisible] = useState(true)
   const [exiting, setExiting] = useState(false)
-  const [letters, setLetters] = useState(
-    WORD.split('').map(() => ({ char: randomChar(), locked: false }))
-  )
-  const [showGlow, setShowGlow] = useState(false)
-  const frameRef = useRef<number>(0)
 
   useEffect(() => {
     if (sessionStorage.getItem('luski-intro-seen')) {
@@ -29,31 +17,12 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
     }
     sessionStorage.setItem('luski-intro-seen', '1')
 
-    let startTime = 0
-    function loop(timestamp: number) {
-      if (!startTime) startTime = timestamp
-      const elapsed = timestamp - startTime
-      setLetters(prev =>
-        prev.map((l, i) => {
-          if (l.locked) return l
-          if (elapsed >= LETTER_RESOLVE_TIMES[i]) return { char: WORD[i], locked: true }
-          return { char: randomChar(), locked: false }
-        })
-      )
-      if (elapsed < MAX_RESOLVE_TIME + 100) {
-        frameRef.current = requestAnimationFrame(loop)
-      }
-    }
+    // Letters stagger in: 0.4s each × 5 = last letter at ~2s
+    // Hold for 0.6s, then exit
+    const t1 = setTimeout(() => setExiting(true), 2800)
+    const t2 = setTimeout(() => { setVisible(false); onComplete() }, 3500)
 
-    const t0 = setTimeout(() => { frameRef.current = requestAnimationFrame(loop) }, 400)
-    const t1 = setTimeout(() => setShowGlow(true), 2200)
-    const t2 = setTimeout(() => setExiting(true), 2800)
-    const t3 = setTimeout(() => { setVisible(false); onComplete() }, 3500)
-
-    return () => {
-      cancelAnimationFrame(frameRef.current)
-      ;[t0, t1, t2, t3].forEach(clearTimeout)
-    }
+    return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [onComplete])
 
   if (!visible) return null
@@ -61,68 +30,69 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
   return (
     <AnimatePresence>
       {!exiting ? (
-        <div
+        <motion.div
           key="preloader"
+          exit={{ opacity: 0 }}
           style={{
             position: 'fixed', inset: 0, zIndex: 9999,
             background: '#080A0F',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
           }}
         >
-          <div style={{
-            position: 'absolute', inset: 0,
-            backgroundImage: 'radial-gradient(rgba(0,229,255,0.05) 1px, transparent 1px)',
-            backgroundSize: '32px 32px',
-          }} />
-
+          {/* Subtle glow behind wordmark */}
           <motion.div
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 2, ease: 'easeOut', delay: 0.8 }}
             style={{
-              position: 'absolute', width: 600, height: 600, borderRadius: '50%',
-              background: 'radial-gradient(circle, rgba(0,229,255,0.08) 0%, rgba(123,97,255,0.04) 40%, transparent 70%)',
+              position: 'absolute',
+              width: 500, height: 300,
+              borderRadius: '50%',
+              background: 'radial-gradient(ellipse, rgba(0,229,255,0.07) 0%, rgba(123,97,255,0.04) 50%, transparent 70%)',
               pointerEvents: 'none',
             }}
-            initial={{ scale: 0.4, opacity: 0 }}
-            animate={showGlow ? { scale: 1, opacity: 1 } : { scale: 0.4, opacity: 0 }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           />
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.04em' }}>
-            {letters.map((l, i) => (
-              <span
-                key={i}
-                suppressHydrationWarning
+          {/* LUSKI — each letter fades + rises in staggered */}
+          <div style={{ display: 'flex', gap: '0.06em', position: 'relative' }}>
+            {LETTERS.map((letter, i) => (
+              <motion.span
+                key={letter}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{
+                  duration: 0.7,
+                  ease: [0.22, 1, 0.36, 1],
+                  delay: 0.3 + i * 0.1,
+                }}
                 style={{
                   fontFamily: 'var(--font-space-grotesk), sans-serif',
                   fontSize: 'clamp(72px, 14vw, 140px)',
                   fontWeight: 700,
                   letterSpacing: '-0.04em',
                   lineHeight: 1,
-                  color: l.locked ? '#F0F2F5' : 'rgba(0,229,255,0.45)',
-                  transition: l.locked ? 'color 0.1s ease' : 'none',
+                  color: '#F0F2F5',
                   display: 'inline-block',
-                  minWidth: '0.6em',
-                  textAlign: 'center',
-                  fontVariantNumeric: 'tabular-nums',
                 }}
               >
-                {l.char}
-              </span>
+                {letter}
+              </motion.span>
             ))}
           </div>
-        </div>
+        </motion.div>
       ) : (
         <div key="exit" style={{ position: 'fixed', inset: 0, zIndex: 9999, pointerEvents: 'none' }}>
           <motion.div
             style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '50%', background: '#080A0F' }}
             initial={{ y: 0 }}
             animate={{ y: '-100%' }}
-            transition={{ duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           />
           <motion.div
             style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: '#080A0F' }}
             initial={{ y: 0 }}
             animate={{ y: '100%' }}
-            transition={{ duration: 0.72, ease: [0.76, 0, 0.24, 1] }}
+            transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           />
         </div>
       )}
