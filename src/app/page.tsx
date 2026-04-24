@@ -2,7 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { Preloader } from '@/components/Preloader'
-import { CustomCursor } from '@/components/CustomCursor'
+import { MouseTrail } from '@/components/MouseTrail'
 import { AuroraBackground } from '@/components/AuroraBackground'
 import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/sections/Hero'
@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Preloader onComplete={handlePreloaderComplete} />
-      <CustomCursor />
+      <MouseTrail />
       <AuroraBackground />
       <Nav />
       <main style={{ position: 'relative', zIndex: 1 }}>

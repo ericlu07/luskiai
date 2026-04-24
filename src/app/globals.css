@@ -29,7 +29,6 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    cursor: none;
     overflow-x: hidden;
   }
 
@@ -126,11 +125,6 @@
   50%     { opacity: 1; }
 }
 
-/* ── Responsive ───────────────────────────────────────── */
-@media (max-width: 768px) {
-  body { cursor: auto; }
-}
-
 /* ── Tablet ────────────────────────────────────────────── */
 @media (max-width: 900px) {
   #about > div:last-child {
@@ -148,38 +142,13 @@
 
 /* ── Mobile ────────────────────────────────────────────── */
 @media (max-width: 600px) {
-  body { cursor: auto; }
-
   /* Sections */
   #about  { padding: 100px 20px !important; }
   #work   { padding: 100px 20px !important; }
   #connect { padding: 100px 20px 80px !important; }
 
-  /* About grid → single col */
-  #about > div:last-child {
-    grid-template-columns: 1fr !important;
-    gap: 48px !important;
-  }
-
-  /* Work grid → single col */
-  #work > div:last-child {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Connect socials → single col */
-  #connect > div > div:nth-child(3) {
-    grid-template-columns: 1fr !important;
-  }
-
-  /* Hero text tighter on mobile */
-  #hero h1 {
-    font-size: clamp(48px, 16vw, 80px) !important;
-  }
-}
-
-/* ── Very small ────────────────────────────────────────── */
-@media (max-width: 380px) {
-  #hero h1 {
-    font-size: 42px !important;
-  }
+  /* Grids → single col */
+  #about > div:last-child { grid-template-columns: 1fr !important; gap: 48px !important; }
+  #work > div:last-child  { grid-template-columns: 1fr !important; }
+  #connect > div > div:nth-child(3) { grid-template-columns: 1fr !important; }
 }
