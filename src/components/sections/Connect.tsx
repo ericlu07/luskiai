@@ -37,25 +37,6 @@ export function Connect() {
 
       <div style={{ maxWidth: 1300, margin: '0 auto', position: 'relative', zIndex: 1 }}>
         {/* Section label */}
-        <motion.div
-          initial={{ opacity: 0, x: -16 }}
-          animate={inView ? { opacity: 1, x: 0 } : {}}
-          transition={{ duration: 0.7, ease }}
-          style={{
-            fontFamily: 'var(--font-jetbrains-mono), monospace',
-            fontSize: 9,
-            letterSpacing: '0.4em',
-            color: 'rgba(0,229,255,0.5)',
-            textTransform: 'uppercase',
-            marginBottom: 72,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 14,
-          }}
-        >
-          <span style={{ width: 28, height: 1, background: 'rgba(0,229,255,0.4)', display: 'inline-block', flexShrink: 0 }} />
-          03 / Connect
-        </motion.div>
 
         {/* Giant CTA heading */}
         <div style={{ textAlign: 'center', marginBottom: 88 }}>
