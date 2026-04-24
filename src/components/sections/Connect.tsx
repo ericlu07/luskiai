@@ -6,9 +6,8 @@ import { useRef } from 'react'
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 const SOCIALS = [
-  { name: 'X',         href: '#', handle: '@luski', desc: 'Daily thoughts & threads', color: '#00E5FF' },
-  { name: 'Instagram', href: '#', handle: '@luski', desc: 'Behind the build',         color: '#7B61FF' },
-  { name: 'LinkedIn',  href: '#', handle: 'luski',  desc: 'Professional updates',     color: '#00E5FF' },
+  { name: 'X',         href: 'https://x.com/ericluski',              handle: '@ericluski', desc: 'Daily thoughts & threads', color: '#00E5FF' },
+  { name: 'Instagram', href: 'https://instagram.com/ericywlu',        handle: '@ericywlu',  desc: 'Behind the build',         color: '#7B61FF' },
 ]
 
 export function Connect() {
@@ -109,7 +108,7 @@ export function Connect() {
           transition={{ duration: 0.9, ease, delay: 0.3 }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: 12,
             marginBottom: 80,
           }}
