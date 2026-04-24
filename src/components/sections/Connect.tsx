@@ -6,10 +6,9 @@ import { useRef } from 'react'
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
 const SOCIALS = [
-  { name: 'Twitter / X',  href: '#', handle: '@luski',      desc: 'Daily thoughts & threads',  color: '#00E5FF' },
-  { name: 'YouTube',      href: '#', handle: 'LUSKI',        desc: 'Long-form experiments',     color: '#7B61FF' },
-  { name: 'GitHub',       href: '#', handle: 'luski',        desc: 'Open-source tools',         color: '#00E5FF' },
-  { name: 'Newsletter',   href: '#', handle: 'The Signal',   desc: 'Weekly deep dives',         color: '#7B61FF' },
+  { name: 'X',         href: '#', handle: '@luski', desc: 'Daily thoughts & threads', color: '#00E5FF' },
+  { name: 'Instagram', href: '#', handle: '@luski', desc: 'Behind the build',         color: '#7B61FF' },
+  { name: 'LinkedIn',  href: '#', handle: 'luski',  desc: 'Professional updates',     color: '#00E5FF' },
 ]
 
 export function Connect() {
@@ -110,7 +109,7 @@ export function Connect() {
           transition={{ duration: 0.9, ease, delay: 0.3 }}
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(4, 1fr)',
+            gridTemplateColumns: 'repeat(3, 1fr)',
             gap: 12,
             marginBottom: 80,
           }}

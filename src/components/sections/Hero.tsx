@@ -61,44 +61,6 @@ export function Hero({ visible }: HeroProps) {
         pointerEvents: 'none',
       }}>
 
-        {/* Status pill */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={visible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease, delay: 0.0 }}
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 14,
-            padding: '6px 16px',
-            borderRadius: 100,
-            border: '1px solid rgba(255,255,255,0.1)',
-            background: 'rgba(8,10,15,0.5)',
-            backdropFilter: 'blur(12px)',
-            WebkitBackdropFilter: 'blur(12px)',
-            marginBottom: 18,
-            whiteSpace: 'nowrap',
-            pointerEvents: 'auto',
-          }}
-        >
-          <span style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-            <span style={{
-              width: 5, height: 5, borderRadius: '50%',
-              background: '#00E5FF',
-              boxShadow: '0 0 8px rgba(0,229,255,1)',
-              animation: 'pulse-ring 2s ease-out infinite',
-              flexShrink: 0,
-            }} />
-            <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 9, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(240,242,245,0.5)' }}>
-              AI Content Creator
-            </span>
-          </span>
-          <span style={{ width: 1, height: 10, background: 'rgba(255,255,255,0.12)' }} />
-          <span style={{ fontFamily: 'var(--font-jetbrains-mono)', fontSize: 9, letterSpacing: '0.32em', textTransform: 'uppercase', color: 'rgba(0,229,255,0.65)' }}>
-            Built in Public
-          </span>
-        </motion.div>
-
         {/* LUSKI — letter-by-letter entrance + continuous shimmer */}
         <motion.h1
           style={{

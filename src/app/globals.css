@@ -135,7 +135,7 @@
     grid-template-columns: repeat(2, 1fr) !important;
   }
   #connect > div > div:nth-child(3) {
-    grid-template-columns: repeat(2, 1fr) !important;
+    grid-template-columns: 1fr !important;
   }
   header nav { display: none !important; }
 }
