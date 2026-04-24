@@ -4,7 +4,6 @@ import { useState, useCallback } from 'react'
 import { Preloader } from '@/components/Preloader'
 import { MouseTrail } from '@/components/MouseTrail'
 import { AuroraBackground } from '@/components/AuroraBackground'
-import { Nav } from '@/components/Nav'
 import { Hero } from '@/components/sections/Hero'
 import { About } from '@/components/sections/About'
 import { Work } from '@/components/sections/Work'
@@ -22,7 +21,6 @@ export default function Home() {
       <Preloader onComplete={handlePreloaderComplete} />
       <MouseTrail />
       <AuroraBackground />
-      <Nav />
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero visible={heroVisible} />
 <About />
