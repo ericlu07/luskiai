@@ -7,8 +7,7 @@ import Link from 'next/link'
 const LINKS = [
   { label: 'Work',    href: '#work'    },
   { label: 'About',  href: '#about'   },
-  { label: 'Signal', href: '#signal'  },
-  { label: 'Connect',href: '#connect' },
+  { label: 'Connect', href: '#connect' },
 ]
 
 export function Nav() {
