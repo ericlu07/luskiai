@@ -5,7 +5,6 @@ import { Preloader } from '@/components/Preloader'
 import { MouseTrail } from '@/components/MouseTrail'
 import { AuroraBackground } from '@/components/AuroraBackground'
 import { Hero } from '@/components/sections/Hero'
-import { About } from '@/components/sections/About'
 import { Connect } from '@/components/sections/Connect'
 
 export default function Home() {
@@ -22,8 +21,7 @@ export default function Home() {
       <AuroraBackground />
       <main style={{ position: 'relative', zIndex: 1 }}>
         <Hero visible={heroVisible} />
-<About />
-        <Connect />
+<Connect />
       </main>
     </>
   )

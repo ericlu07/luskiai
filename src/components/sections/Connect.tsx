@@ -80,25 +80,9 @@ export function Connect() {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text',
             }}>
-              the build.
+              the journey.
             </span>
           </motion.h2>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{
-              fontSize: 17,
-              color: '#8A92A0',
-              lineHeight: 1.65,
-              maxWidth: 480,
-              margin: '0 auto',
-            }}
-          >
-            Everything gets documented. Every experiment, failure, and breakthrough.
-            No polished PR — just the raw build.
-          </motion.p>
         </div>
 
         {/* Social cards */}
@@ -118,65 +102,6 @@ export function Connect() {
           ))}
         </motion.div>
 
-        {/* Footer */}
-        <div style={{
-          borderTop: '1px solid rgba(255,255,255,0.05)',
-          paddingTop: 40,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          flexWrap: 'wrap',
-          gap: 16,
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{
-              width: 28,
-              height: 28,
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #00E5FF, #7B61FF)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontFamily: 'var(--font-space-grotesk), sans-serif',
-              fontSize: 12,
-              fontWeight: 700,
-              color: '#080A0F',
-            }}>
-              L
-            </div>
-            <span style={{
-              fontFamily: 'var(--font-space-grotesk), sans-serif',
-              fontSize: 16,
-              fontWeight: 700,
-              color: '#F0F2F5',
-              letterSpacing: '-0.02em',
-            }}>
-              LUSKI
-            </span>
-          </div>
-
-          <div style={{ display: 'flex', gap: 32, alignItems: 'center' }}>
-            <span style={{
-              fontFamily: 'var(--font-jetbrains-mono), monospace',
-              fontSize: 10,
-              color: '#4A5060',
-              letterSpacing: '0.1em',
-            }}>
-              Built in public
-            </span>
-            <span
-              suppressHydrationWarning
-              style={{
-                fontFamily: 'var(--font-jetbrains-mono), monospace',
-                fontSize: 10,
-                color: '#4A5060',
-                letterSpacing: '0.1em',
-              }}
-            >
-              © {new Date().getFullYear()}
-            </span>
-          </div>
-        </div>
       </div>
     </section>
   )
