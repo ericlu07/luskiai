@@ -29,7 +29,7 @@ export function Hero({ visible }: HeroProps) {
           width: '100%',
           height: '100%',
           objectFit: 'cover',
-          objectPosition: 'center bottom',
+          objectPosition: 'center 65%',
           zIndex: 1,
           pointerEvents: 'none',
         }}
@@ -65,7 +65,7 @@ export function Hero({ visible }: HeroProps) {
         <motion.h1
           style={{
             fontFamily: 'var(--font-space-grotesk), sans-serif',
-            fontSize: 'clamp(52px, 10vw, 140px)',
+            fontSize: 'clamp(96px, 20vw, 140px)',
             fontWeight: 700,
             letterSpacing: '0.04em',
             lineHeight: 0.9,
@@ -101,7 +101,7 @@ export function Hero({ visible }: HeroProps) {
           transition={{ duration: 0.8, ease, delay: 0.2 }}
           style={{
             fontFamily: 'var(--font-space-grotesk), sans-serif',
-            fontSize: 'clamp(12px, 1.5vw, 18px)',
+            fontSize: 'clamp(16px, 3.5vw, 20px)',
             fontWeight: 500,
             color: 'rgba(240,242,245,0.5)',
             marginBottom: 0,
