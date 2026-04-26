@@ -48,18 +48,6 @@ export function Portfolio() {
             </h2>
           </motion.div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={inView ? { opacity: 1 } : {}}
-            transition={{ duration: 0.7, ease, delay: 0.2 }}
-            style={{
-              fontFamily: 'var(--font-inter), sans-serif',
-              fontSize: 13, color: 'rgba(240,242,245,0.3)',
-              maxWidth: 260, margin: 0, lineHeight: 1.6,
-            }}
-          >
-            No crew. No studio. No six-figure budget. You wouldn&apos;t know.
-          </motion.p>
         </div>
 
         <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 2 }}>
