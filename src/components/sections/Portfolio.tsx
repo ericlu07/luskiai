@@ -122,7 +122,7 @@ export function Portfolio() {
                 fontSize: 20, fontWeight: 700, letterSpacing: '-0.03em',
                 color: 'rgba(240,242,245,0.55)',
               }}>
-                ~$15,000
+                $15,000
               </span>
             </div>
           </div>
