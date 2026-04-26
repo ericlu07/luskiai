@@ -1,26 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
   <rect width="32" height="32" rx="8" fill="#080A0F"/>
-
-  <!-- Soft glow behind center -->
-  <circle cx="16" cy="16" r="9" fill="#00E5FF" opacity="0.06"/>
-
-  <!-- Orbital arc 1: bottom-left → top-right (cyan → violet) -->
-  <path d="M5 26 C8 18 14 10 27 7" stroke="url(#g1)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-
-  <!-- Orbital arc 2: top-left → bottom-right (violet → cyan) -->
-  <path d="M5 6 C8 14 14 22 27 25" stroke="url(#g2)" stroke-width="2.4" stroke-linecap="round" fill="none"/>
-
-  <!-- Bright center core -->
-  <circle cx="16" cy="16" r="3" fill="#00E5FF" opacity="0.25"/>
-  <circle cx="16" cy="16" r="2" fill="#00E5FF"/>
-  <circle cx="16" cy="16" r="1" fill="#ffffff"/>
-
+  <path d="M20 4L8 4L14 15L9 15L12 28L24 28L18 17L23 17Z" fill="url(#g)"/>
   <defs>
-    <linearGradient id="g1" x1="5" y1="26" x2="27" y2="7" gradientUnits="userSpaceOnUse">
-      <stop offset="0%" stop-color="#7B61FF"/>
-      <stop offset="100%" stop-color="#00E5FF"/>
-    </linearGradient>
-    <linearGradient id="g2" x1="5" y1="6" x2="27" y2="25" gradientUnits="userSpaceOnUse">
+    <linearGradient id="g" x1="8" y1="4" x2="24" y2="28" gradientUnits="userSpaceOnUse">
       <stop offset="0%" stop-color="#00E5FF"/>
       <stop offset="100%" stop-color="#7B61FF"/>
     </linearGradient>
