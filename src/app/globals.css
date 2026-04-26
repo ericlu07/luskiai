@@ -135,9 +135,12 @@
 
 /* ── Mobile ────────────────────────────────────────────── */
 @media (max-width: 600px) {
-  .services-grid  { grid-template-columns: 1fr !important; }
-  .portfolio-grid { grid-template-columns: 1fr !important; }
-  .pricing-grid   { grid-template-columns: 1fr !important; }
-  .contact-grid   { grid-template-columns: 1fr !important; }
-  .process-grid   { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .services-grid   { grid-template-columns: 1fr !important; }
+  .portfolio-grid  { grid-template-columns: 1fr !important; }
+  .portfolio-layout { grid-template-columns: 1fr !important; }
+  .portfolio-layout > *:first-child { border-radius: 8px 8px 0 0 !important; border-right: 1px solid #1E2230 !important; border-bottom: none !important; }
+  .portfolio-layout > *:last-child  { border-radius: 0 0 8px 8px !important; }
+  .pricing-grid    { grid-template-columns: 1fr !important; }
+  .contact-grid    { grid-template-columns: 1fr !important; }
+  .process-grid    { grid-template-columns: 1fr !important; gap: 40px !important; }
 }

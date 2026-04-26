@@ -31,7 +31,7 @@ export function Portfolio() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7, ease }}
-          style={{ marginBottom: 48 }}
+          style={{ marginBottom: 40 }}
         >
           <div style={{
             fontFamily: 'var(--font-jetbrains-mono), monospace',
@@ -50,114 +50,84 @@ export function Portfolio() {
           </h2>
         </motion.div>
 
-        {/* Video */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.98 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
-          transition={{ duration: 1, ease, delay: 0.15 }}
-          style={{ borderRadius: 8, overflow: 'hidden', border: '1px solid #1E2230', background: '#0E1015' }}
-        >
-          <video
-            src="/luskisandals.mp4"
-            controls playsInline preload="metadata"
-            style={{ width: '100%', display: 'block' }}
-          />
-        </motion.div>
+        {/* Side-by-side layout */}
+        <div className="portfolio-layout" style={{ display: 'grid', gridTemplateColumns: '1.6fr 1fr', gap: 2, alignItems: 'stretch' }}>
 
-        {/* Cost comparison */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, ease, delay: 0.4 }}
-          style={{
-            marginTop: 2,
-            display: 'grid',
-            gridTemplateColumns: '1fr auto 1fr',
-            background: '#08090E',
-            border: '1px solid #1A1D26',
-            borderTop: 'none',
-            borderRadius: '0 0 8px 8px',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Left — traditional */}
-          <div style={{ padding: 'clamp(20px, 3vw, 36px)' }}>
-            <div style={{
-              fontFamily: 'var(--font-jetbrains-mono), monospace',
-              fontSize: 9, letterSpacing: '0.25em',
-              color: 'rgba(240,242,245,0.25)', textTransform: 'uppercase', marginBottom: 16,
-            }}>
-              Traditional Production
+          {/* Left — video */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, ease, delay: 0.1 }}
+            style={{ borderRadius: '8px 0 0 8px', overflow: 'hidden', border: '1px solid #1E2230', background: '#0E1015', borderRight: 'none' }}
+          >
+            <video
+              src="/luskisandals.mp4"
+              controls playsInline preload="metadata"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </motion.div>
+
+          {/* Right — comparison */}
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.9, ease, delay: 0.2 }}
+            style={{
+              background: '#08090E',
+              border: '1px solid #1A1D26',
+              borderRadius: '0 8px 8px 0',
+              display: 'grid',
+              gridTemplateRows: '1fr auto 1fr',
+              overflow: 'hidden',
+            }}
+          >
+            {/* Traditional */}
+            <div style={{ padding: 'clamp(20px, 2.5vw, 32px)', borderBottom: '1px solid #1A1D26' }}>
+              <div style={{
+                fontFamily: 'var(--font-jetbrains-mono), monospace',
+                fontSize: 9, letterSpacing: '0.25em',
+                color: 'rgba(240,242,245,0.25)', textTransform: 'uppercase', marginBottom: 16,
+              }}>
+                Traditional Production
+              </div>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 7, marginBottom: 16 }}>
+                {BREAKDOWN.map(item => (
+                  <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+                    <span style={{ fontFamily: 'var(--font-inter), sans-serif', fontSize: 11, color: 'rgba(240,242,245,0.3)' }}>
+                      {item.label}
+                    </span>
+                    <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10, color: 'rgba(240,242,245,0.4)', whiteSpace: 'nowrap' }}>
+                      {item.cost}
+                    </span>
+                  </div>
+                ))}
+              </div>
+
+              <div style={{ borderTop: '1px solid #1E2230', paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-inter), sans-serif', fontSize: 11, color: 'rgba(240,242,245,0.4)' }}>Total</span>
+                <span style={{ fontFamily: 'var(--font-space-grotesk), sans-serif', fontSize: 22, fontWeight: 700, letterSpacing: '-0.03em', color: 'rgba(240,242,245,0.45)' }}>
+                  $15,000
+                </span>
+              </div>
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
-              {BREAKDOWN.map(item => (
-                <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
-                  <span style={{
-                    fontFamily: 'var(--font-inter), sans-serif',
-                    fontSize: 12, color: 'rgba(240,242,245,0.35)',
-                  }}>
-                    {item.label}
-                  </span>
-                  <span style={{
-                    fontFamily: 'var(--font-jetbrains-mono), monospace',
-                    fontSize: 11, color: 'rgba(240,242,245,0.45)',
-                    whiteSpace: 'nowrap',
-                  }}>
-                    {item.cost}
-                  </span>
-                </div>
-              ))}
-            </div>
-
-            <div style={{ borderTop: '1px solid #1E2230', paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{
-                fontFamily: 'var(--font-inter), sans-serif',
-                fontSize: 12, fontWeight: 600, color: 'rgba(240,242,245,0.5)',
-              }}>
-                Total
-              </span>
-              <span style={{
-                fontFamily: 'var(--font-space-grotesk), sans-serif',
-                fontSize: 20, fontWeight: 700, letterSpacing: '-0.03em',
-                color: 'rgba(240,242,245,0.55)',
-              }}>
-                $15,000
+            {/* VS divider */}
+            <div style={{ padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 9, letterSpacing: '0.3em', color: 'rgba(240,242,245,0.15)', textTransform: 'uppercase' }}>
+                vs
               </span>
             </div>
-          </div>
 
-          {/* Divider */}
-          <div style={{
-            display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
-            padding: '24px 20px',
-            borderLeft: '1px solid #1A1D26', borderRight: '1px solid #1A1D26',
-          }}>
-            <div style={{
-              fontFamily: 'var(--font-jetbrains-mono), monospace',
-              fontSize: 9, letterSpacing: '0.2em',
-              color: 'rgba(240,242,245,0.2)', textTransform: 'uppercase',
-              writingMode: 'vertical-rl', userSelect: 'none',
-            }}>
-              vs
-            </div>
-          </div>
+            {/* AI */}
+            <div style={{ padding: 'clamp(20px, 2.5vw, 32px)', borderTop: '1px solid #1A1D26', position: 'relative', overflow: 'hidden' }}>
+              <div style={{
+                position: 'absolute', top: '-40%', right: '-10%',
+                width: 180, height: 180,
+                background: 'radial-gradient(ellipse, rgba(0,229,255,0.07) 0%, transparent 70%)',
+                pointerEvents: 'none',
+              }} />
 
-          {/* Right — AI */}
-          <div style={{
-            padding: 'clamp(20px, 3vw, 36px)',
-            display: 'flex', flexDirection: 'column', justifyContent: 'space-between',
-            position: 'relative', overflow: 'hidden',
-          }}>
-            {/* Subtle glow */}
-            <div style={{
-              position: 'absolute', top: '-40%', right: '-20%',
-              width: 200, height: 200,
-              background: 'radial-gradient(ellipse, rgba(0,229,255,0.06) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }} />
-
-            <div>
               <div style={{
                 fontFamily: 'var(--font-jetbrains-mono), monospace',
                 fontSize: 9, letterSpacing: '0.25em',
@@ -166,49 +136,38 @@ export function Portfolio() {
                 Luski Collection
               </div>
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 20 }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 7, marginBottom: 16 }}>
                 {[
                   { label: 'AI generation & direction', cost: '$—' },
                   { label: 'Post & refinement', cost: '$—' },
                   { label: 'Music', cost: '$—' },
                   { label: 'Revisions', cost: '$—' },
                 ].map(item => (
-                  <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
-                    <span style={{
-                      fontFamily: 'var(--font-inter), sans-serif',
-                      fontSize: 12, color: 'rgba(240,242,245,0.35)',
-                    }}>
+                  <div key={item.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12 }}>
+                    <span style={{ fontFamily: 'var(--font-inter), sans-serif', fontSize: 11, color: 'rgba(240,242,245,0.3)' }}>
                       {item.label}
                     </span>
-                    <span style={{
-                      fontFamily: 'var(--font-jetbrains-mono), monospace',
-                      fontSize: 11, color: 'rgba(0,229,255,0.3)',
-                    }}>
+                    <span style={{ fontFamily: 'var(--font-jetbrains-mono), monospace', fontSize: 10, color: 'rgba(0,229,255,0.3)' }}>
                       {item.cost}
                     </span>
                   </div>
                 ))}
               </div>
-            </div>
 
-            <div style={{ borderTop: '1px solid rgba(0,229,255,0.12)', paddingTop: 14, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <span style={{
-                fontFamily: 'var(--font-inter), sans-serif',
-                fontSize: 12, fontWeight: 600, color: 'rgba(240,242,245,0.5)',
-              }}>
-                Total
-              </span>
-              <span style={{
-                fontFamily: 'var(--font-space-grotesk), sans-serif',
-                fontSize: 20, fontWeight: 700, letterSpacing: '-0.03em',
-                background: 'linear-gradient(135deg, #00E5FF, #7B61FF)',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              }}>
-                &lt;$500
-              </span>
+              <div style={{ borderTop: '1px solid rgba(0,229,255,0.1)', paddingTop: 12, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ fontFamily: 'var(--font-inter), sans-serif', fontSize: 11, color: 'rgba(240,242,245,0.4)' }}>Total</span>
+                <span style={{
+                  fontFamily: 'var(--font-space-grotesk), sans-serif',
+                  fontSize: 22, fontWeight: 700, letterSpacing: '-0.03em',
+                  background: 'linear-gradient(135deg, #00E5FF, #7B61FF)',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                }}>
+                  &lt;$500
+                </span>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   )
