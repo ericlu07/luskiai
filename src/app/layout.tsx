@@ -23,18 +23,18 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'LUSKI',
-  description: 'Personal brain of an AI content creator. Building at the edge of what\'s possible.',
-  keywords: ['AI', 'content creator', 'machine learning', 'build in public'],
+  title: 'Luski Collection',
+  description: 'Film-quality video for brands that move fast.',
+  keywords: ['video production', 'brand films', 'marketing videos', 'AI video'],
   openGraph: {
-    title: 'LUSKI',
-    description: 'AI Content. Built in Public.',
+    title: 'Luski Collection',
+    description: 'Film-quality video for brands that move fast.',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'LUSKI',
-    description: 'AI Content. Built in Public.',
+    title: 'Luski Collection',
+    description: 'Film-quality video for brands that move fast.',
   },
 }
 

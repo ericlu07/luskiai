@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 
+const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 const LETTERS = ['L', 'U', 'S', 'K', 'I']
 
 export function Preloader({ onComplete }: { onComplete: () => void }) {
@@ -10,18 +11,15 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
   const [exiting, setExiting] = useState(false)
 
   useEffect(() => {
-    if (sessionStorage.getItem('luski-intro-seen')) {
+    if (sessionStorage.getItem('lc-intro-seen')) {
       setVisible(false)
       onComplete()
       return
     }
-    sessionStorage.setItem('luski-intro-seen', '1')
+    sessionStorage.setItem('lc-intro-seen', '1')
 
-    // Letters stagger in: 0.4s each × 5 = last letter at ~2s
-    // Hold for 0.6s, then exit
     const t1 = setTimeout(() => setExiting(true), 2800)
     const t2 = setTimeout(() => { setVisible(false); onComplete() }, 3500)
-
     return () => { clearTimeout(t1); clearTimeout(t2) }
   }, [onComplete])
 
@@ -36,38 +34,35 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
           style={{
             position: 'fixed', inset: 0, zIndex: 9999,
             background: '#080A0F',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            display: 'flex', flexDirection: 'column',
+            alignItems: 'center', justifyContent: 'center',
           }}
         >
-          {/* Subtle glow behind wordmark */}
+          {/* Glow */}
           <motion.div
             initial={{ opacity: 0, scale: 0.6 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 2, ease: 'easeOut', delay: 0.8 }}
+            transition={{ duration: 2, ease: 'easeOut', delay: 0.6 }}
             style={{
               position: 'absolute',
-              width: 500, height: 300,
+              width: 600, height: 300,
               borderRadius: '50%',
-              background: 'radial-gradient(ellipse, rgba(0,229,255,0.07) 0%, rgba(123,97,255,0.04) 50%, transparent 70%)',
+              background: 'radial-gradient(ellipse, rgba(0,229,255,0.06) 0%, rgba(123,97,255,0.03) 50%, transparent 70%)',
               pointerEvents: 'none',
             }}
           />
 
-          {/* LUSKI — each letter fades + rises in staggered */}
-          <div style={{ display: 'flex', gap: '0.06em', position: 'relative' }}>
+          {/* LUSKI */}
+          <div style={{ display: 'flex', gap: '0.04em', position: 'relative' }}>
             {LETTERS.map((letter, i) => (
               <motion.span
                 key={letter}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.7,
-                  ease: [0.22, 1, 0.36, 1],
-                  delay: 0.3 + i * 0.1,
-                }}
+                transition={{ duration: 0.7, ease, delay: 0.2 + i * 0.09 }}
                 style={{
                   fontFamily: 'var(--font-space-grotesk), sans-serif',
-                  fontSize: 'clamp(72px, 14vw, 140px)',
+                  fontSize: 'clamp(64px, 14vw, 130px)',
                   fontWeight: 700,
                   letterSpacing: '-0.04em',
                   lineHeight: 1,
@@ -79,6 +74,23 @@ export function Preloader({ onComplete }: { onComplete: () => void }) {
               </motion.span>
             ))}
           </div>
+
+          {/* COLLECTION */}
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease, delay: 0.9 }}
+            style={{
+              fontFamily: 'var(--font-jetbrains-mono), monospace',
+              fontSize: 'clamp(9px, 1.2vw, 12px)',
+              letterSpacing: '0.35em',
+              color: 'rgba(240,242,245,0.3)',
+              textTransform: 'uppercase',
+              marginTop: 12,
+            }}
+          >
+            Collection
+          </motion.div>
         </motion.div>
       ) : (
         <div key="exit" style={{ position: 'fixed', inset: 0, zIndex: 9999, pointerEvents: 'none' }}>

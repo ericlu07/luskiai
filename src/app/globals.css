@@ -127,28 +127,17 @@
 
 /* ── Tablet ────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  #about > div:last-child {
-    grid-template-columns: 1fr !important;
-    gap: 60px !important;
-  }
-  #work > div:last-child {
-    grid-template-columns: repeat(2, 1fr) !important;
-  }
-  #connect > div > div:nth-child(3) {
-    grid-template-columns: 1fr !important;
-  }
-  header nav { display: none !important; }
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; }
+  .pricing-grid   { grid-template-columns: 1fr !important; }
+  .contact-grid   { grid-template-columns: 1fr !important; }
+  .process-grid   { grid-template-columns: 1fr !important; gap: 48px !important; }
 }
 
 /* ── Mobile ────────────────────────────────────────────── */
 @media (max-width: 600px) {
-  /* Sections */
-  #about  { padding: 100px 20px !important; }
-  #work   { padding: 100px 20px !important; }
-  #connect { padding: 100px 20px 80px !important; }
-
-  /* Grids → single col */
-  #about > div:last-child { grid-template-columns: 1fr !important; gap: 48px !important; }
-  #work > div:last-child  { grid-template-columns: 1fr !important; }
-  #connect > div > div:nth-child(3) { grid-template-columns: 1fr !important; }
+  .services-grid  { grid-template-columns: 1fr !important; }
+  .portfolio-grid { grid-template-columns: 1fr !important; }
+  .pricing-grid   { grid-template-columns: 1fr !important; }
+  .contact-grid   { grid-template-columns: 1fr !important; }
+  .process-grid   { grid-template-columns: 1fr !important; gap: 40px !important; }
 }
