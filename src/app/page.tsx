@@ -2,7 +2,6 @@
 
 import { useState, useCallback } from 'react'
 import { Preloader } from '@/components/Preloader'
-import { MouseTrail } from '@/components/MouseTrail'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Hero } from '@/components/sections/Hero'
 import { Portfolio } from '@/components/sections/Portfolio'
@@ -17,7 +16,6 @@ export default function Home() {
   return (
     <>
       <Preloader onComplete={handlePreloaderComplete} />
-      <MouseTrail />
       <SmoothScroll />
       <main style={{ position: 'relative', zIndex: 1, background: '#080A0F' }}>
         <Hero visible={heroVisible} />
