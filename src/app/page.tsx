@@ -6,7 +6,6 @@ import { MouseTrail } from '@/components/MouseTrail'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Hero } from '@/components/sections/Hero'
 import { Portfolio } from '@/components/sections/Portfolio'
-import { Showreel } from '@/components/sections/Showreel'
 import { Services } from '@/components/sections/Services'
 import { Process } from '@/components/sections/Process'
 import { Contact } from '@/components/sections/Contact'
@@ -23,7 +22,6 @@ export default function Home() {
       <main style={{ position: 'relative', zIndex: 1, background: '#080A0F' }}>
         <Hero visible={heroVisible} />
         <Portfolio />
-        <Showreel />
         <Services />
         <Process />
         <Contact />
