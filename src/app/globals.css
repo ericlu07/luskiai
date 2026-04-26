@@ -127,10 +127,12 @@
 
 /* ── Tablet ────────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .portfolio-grid { grid-template-columns: repeat(2, 1fr) !important; }
-  .pricing-grid   { grid-template-columns: 1fr !important; }
-  .contact-grid   { grid-template-columns: 1fr !important; }
-  .process-grid   { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .portfolio-grid  { grid-template-columns: repeat(2, 1fr) !important; }
+  .pricing-grid    { grid-template-columns: 1fr !important; }
+  .contact-grid    { grid-template-columns: 1fr !important; }
+  .process-grid    { grid-template-columns: 1fr !important; gap: 48px !important; }
+  .calc-grid       { grid-template-columns: 1fr !important; }
+  .brief-type-grid { grid-template-columns: repeat(2, 1fr) !important; }
 }
 
 /* ── Mobile ────────────────────────────────────────────── */
@@ -143,4 +145,6 @@
   .pricing-grid    { grid-template-columns: 1fr !important; }
   .contact-grid    { grid-template-columns: 1fr !important; }
   .process-grid    { grid-template-columns: 1fr !important; gap: 40px !important; }
+  .calc-grid       { grid-template-columns: 1fr !important; }
+  .brief-type-grid { grid-template-columns: 1fr !important; }
 }
