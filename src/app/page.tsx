@@ -5,11 +5,10 @@ import { Preloader } from '@/components/Preloader'
 import { MouseTrail } from '@/components/MouseTrail'
 import { SmoothScroll } from '@/components/SmoothScroll'
 import { Hero } from '@/components/sections/Hero'
+import { Portfolio } from '@/components/sections/Portfolio'
 import { Showreel } from '@/components/sections/Showreel'
 import { Services } from '@/components/sections/Services'
 import { Process } from '@/components/sections/Process'
-import { Portfolio } from '@/components/sections/Portfolio'
-import { Pricing } from '@/components/sections/Pricing'
 import { Contact } from '@/components/sections/Contact'
 
 export default function Home() {
@@ -23,11 +22,10 @@ export default function Home() {
       <SmoothScroll />
       <main style={{ position: 'relative', zIndex: 1, background: '#080A0F' }}>
         <Hero visible={heroVisible} />
+        <Portfolio />
         <Showreel />
         <Services />
         <Process />
-        <Portfolio />
-        <Pricing />
         <Contact />
       </main>
     </>
