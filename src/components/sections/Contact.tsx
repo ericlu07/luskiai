@@ -5,10 +5,59 @@ import { useRef } from 'react'
 
 const ease = [0.22, 1, 0.36, 1] as [number, number, number, number]
 
+// Custom SVG icons in site colors
+function EmailIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="rgba(0,229,255,0.08)" />
+      <path d="M6 9.5C6 8.67 6.67 8 7.5 8h13c.83 0 1.5.67 1.5 1.5v9c0 .83-.67 1.5-1.5 1.5h-13C6.67 20 6 19.33 6 18.5v-9z" stroke="#00E5FF" strokeWidth="1.3" fill="none"/>
+      <path d="M6 10l8 5.5 8-5.5" stroke="#00E5FF" strokeWidth="1.3" strokeLinecap="round"/>
+    </svg>
+  )
+}
+
+function InstagramIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="rgba(123,97,255,0.08)" />
+      <rect x="7" y="7" width="14" height="14" rx="4" stroke="#7B61FF" strokeWidth="1.3" fill="none"/>
+      <circle cx="14" cy="14" r="3.5" stroke="#7B61FF" strokeWidth="1.3" fill="none"/>
+      <circle cx="18.2" cy="9.8" r="0.9" fill="#7B61FF"/>
+    </svg>
+  )
+}
+
+function XIcon() {
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+      <rect width="28" height="28" rx="6" fill="rgba(0,229,255,0.05)" />
+      <path d="M8 8h4l2.5 3.5L17.5 8H20l-4.5 6L20 20h-4l-2.8-3.8L10 20H8l5-6.5L8 8z" fill="rgba(240,242,245,0.6)"/>
+    </svg>
+  )
+}
+
 const LINKS = [
-  { label: 'Email', value: 'ericlu@ultisai.com', href: 'mailto:ericlu@ultisai.com' },
-  { label: 'Instagram', value: '@ericywlu', href: 'https://instagram.com/ericywlu' },
-  { label: 'X', value: '@ericluski', href: 'https://x.com/ericluski' },
+  {
+    label: 'Email',
+    value: 'ericlu@ultisai.com',
+    href: 'mailto:ericlu@ultisai.com',
+    Icon: EmailIcon,
+    accent: '#00E5FF',
+  },
+  {
+    label: 'Instagram',
+    value: '@ericywlu',
+    href: 'https://instagram.com/ericywlu',
+    Icon: InstagramIcon,
+    accent: '#7B61FF',
+  },
+  {
+    label: 'X / Twitter',
+    value: '@ericluski',
+    href: 'https://x.com/ericluski',
+    Icon: XIcon,
+    accent: 'rgba(240,242,245,0.5)',
+  },
 ]
 
 export function Contact() {
@@ -45,50 +94,65 @@ export function Contact() {
             marginBottom: 'clamp(48px, 8vh, 80px)',
           }}
         >
-          Ready to<br />
+          Follow<br />
           <span style={{
             background: 'linear-gradient(135deg, #00E5FF 0%, #7B61FF 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
           }}>
-            create?
+            the journey.
           </span>
         </motion.h2>
 
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-          {LINKS.map(({ label, value, href }, i) => (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+          {LINKS.map(({ label, value, href, Icon, accent }, i) => (
             <motion.a
               key={label}
               href={href}
               target={href.startsWith('http') ? '_blank' : undefined}
               rel="noopener noreferrer"
-              initial={{ opacity: 0, x: -20 }}
-              animate={inView ? { opacity: 1, x: 0 } : {}}
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, ease, delay: 0.2 + i * 0.1 }}
               style={{
-                display: 'flex', alignItems: 'center', gap: 24,
-                textDecoration: 'none', width: 'fit-content',
+                display: 'flex', alignItems: 'center', gap: 16,
+                textDecoration: 'none',
+                background: '#08090E',
+                border: '1px solid #1A1D26',
+                borderRadius: 10,
+                padding: '16px 20px',
+                maxWidth: 420,
+                transition: 'border-color 0.2s, background 0.2s',
+              }}
+              onMouseEnter={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = `${accent}30`
+                el.style.background = '#0C0E13'
+              }}
+              onMouseLeave={e => {
+                const el = e.currentTarget as HTMLElement
+                el.style.borderColor = '#1A1D26'
+                el.style.background = '#08090E'
               }}
             >
-              <span style={{
-                fontFamily: 'var(--font-jetbrains-mono), monospace',
-                fontSize: 9, letterSpacing: '0.25em',
-                color: 'rgba(0,229,255,0.45)', textTransform: 'uppercase',
-                minWidth: 72,
-              }}>
-                {label}
-              </span>
-              <span style={{
-                fontFamily: 'var(--font-space-grotesk), sans-serif',
-                fontSize: 'clamp(18px, 2.5vw, 28px)',
-                fontWeight: 600, letterSpacing: '-0.02em',
-                color: 'rgba(240,242,245,0.7)',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={e => { (e.currentTarget as HTMLElement).style.color = '#F0F2F5' }}
-              onMouseLeave={e => { (e.currentTarget as HTMLElement).style.color = 'rgba(240,242,245,0.7)' }}
-              >
-                {value}
-              </span>
+              <Icon />
+              <div>
+                <div style={{
+                  fontFamily: 'var(--font-jetbrains-mono), monospace',
+                  fontSize: 8, letterSpacing: '0.25em',
+                  color: 'rgba(240,242,245,0.25)', textTransform: 'uppercase', marginBottom: 3,
+                }}>
+                  {label}
+                </div>
+                <div style={{
+                  fontFamily: 'var(--font-space-grotesk), sans-serif',
+                  fontSize: 'clamp(14px, 1.8vw, 18px)',
+                  fontWeight: 600, letterSpacing: '-0.02em',
+                  color: 'rgba(240,242,245,0.75)',
+                }}>
+                  {value}
+                </div>
+              </div>
+              <div style={{ marginLeft: 'auto', color: 'rgba(240,242,245,0.15)', fontSize: 14 }}>↗</div>
             </motion.a>
           ))}
         </div>
