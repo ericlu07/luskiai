@@ -6,7 +6,6 @@ import { SmoothScroll } from '@/components/SmoothScroll'
 import { Hero } from '@/components/sections/Hero'
 import { SocialProof } from '@/components/sections/SocialProof'
 import { Portfolio } from '@/components/sections/Portfolio'
-import { BriefBuilder } from '@/components/sections/BriefBuilder'
 import { Calculator } from '@/components/sections/Calculator'
 import { Services } from '@/components/sections/Services'
 import { Process } from '@/components/sections/Process'
@@ -27,7 +26,6 @@ export default function Home() {
         <Hero visible={heroVisible} />
         <SocialProof />
         <Portfolio />
-        <BriefBuilder />
         <Calculator />
         <Services />
         <Process />
